@@ -1,6 +1,6 @@
 ## Small Particle Swarm Optimization library in C++
 
-This is a small library that implements the basic Particle Swarm Optimation algorithm in C++.
+This is a small library that implements the basic Particle Swarm Optimation algorithm in C++. It was created and used in another project of mine, and thought it might help others in their own or to learn about PSO.
 
 The main classes are the following:
 - (class PSO) _The main PSO algorithm_
@@ -16,7 +16,7 @@ Also included is test code that applies the PSO library to the Ackley and 2D Gau
 - Python (To plot results of the supplied test program).
 
 ### Example test Program
-To compile the test program:
+To create the test program:
 ```
 g++ -o test particle.cpp pso.cpp test_pso_gendata.cpp -lgsl -lgslcblas -lm
 ```
@@ -41,4 +41,6 @@ The result will be an animation. The first image should look like the following:
 
 The last image will show the particles clustering (some overlapping) around the best value found:
 ![Image of last frame](http://i.imgur.com/RIfBucY.png)
+
+### Best wishes
 
