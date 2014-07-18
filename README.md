@@ -1,18 +1,21 @@
-# Small Particle Swarm Optimization library in C++
+## Small Particle Swarm Optimization library in C++
 
 This is a small library that implements the basic Particle Swarm Optimation algorithm in C++.
 
 The main classes are the following:
-- (class PSO) The main PSO algorithm
-- (class Particle) Represents a particle manipulated by the algorithm
-- (class RandomNumberGenerator) To generate random numbers using the GNU Scientific Library
+- (class PSO) _The main PSO algorithm_
+- (class Particle) _Represents a particle manipulated by the algorithm_
+- (class RandomNumberGenerator) _To generate random numbers using the GNU Scientific Library_
 
 Also included is test code that applies the PSO library to the Ackley and 2D Gaussian functions. The results are plotted/animated using the included Python script.
 
-This library requires GNU GSL.
 
+### Requirements
+- C++ compiler and linker.
+- [GNU Scientific Library](http://www.gnu.org/software/gsl/).
+- Python (To plot results of the supplied test program).
 
-### Test Program
+### Example test Program
 To compile the test program:
 ```
 g++ -o test particle.cpp pso.cpp test_pso_gendata.cpp -lgsl -lgslcblas -lm
