@@ -145,12 +145,8 @@ protected:
     // http://www.hindawi.com/journals/ddns/2010/462145/
     double computeInertiaWeight(const unsigned int iteration, const unsigned int maxInterations) const
     {
-        // These values determine the rate of convergence
-        static const double omega1 = 0.9;
-        static const double omega2 = 0.4;
-
         // Note. We add +1 because our iterations go from 0 to max-1.
-        double inertiaWeight = (omega1 - omega2) * ( (maxInterations - (iteration+1.0)) / (1.0 * (iteration+1.0) ) ) + omega2;
+        double inertiaWeight = (mOmega1 - mOmega2) * ( (maxInterations - (iteration+1.0)) / (1.0 * (iteration+1.0) ) ) + mOmega2;
         return inertiaWeight;
     }
 
@@ -160,8 +156,13 @@ private:
     Particle 				mGBest;
     std::vector<Dim>		mDim;
 
+    // These values control how random the particle velocities are
     static const double 	mC1;
     static const double 	mC2;
+    
+    // These values control the rate of convergence
+    static const double     mOmega1;
+    static const double     mOmega2;
 
     RandomNumberGenerator 	mRng;
 };

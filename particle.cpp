@@ -29,7 +29,7 @@ Particle::Particle(const std::vector<Dim>& dim)
     mPBestFitness = mFitness;
 }
 
-Particle::Particle(const std::vector<dim_t>& pos, const prob_t fitness)
+Particle::Particle(const dvector& pos, const prob_t fitness)
 {
     mPos = pos;
     mVel.resize(pos.size());
@@ -38,12 +38,12 @@ Particle::Particle(const std::vector<dim_t>& pos, const prob_t fitness)
     mPBestFitness = fitness;
 }
 
-const std::vector<dim_t>& Particle::getPosition() const
+const Particle::dvector& Particle::getPosition() const
 {
     return mPos;
 }
 
-std::vector<dim_t> Particle::getVelocity() const
+Particle::dvector Particle::getVelocity() const
 {
     return mVel;
 }
@@ -53,7 +53,7 @@ double Particle::getFitness() const
     return mFitness;
 }
 
-std::vector<dim_t> Particle::getPBestPosition() const
+Particle::dvector Particle::getPBestPosition() const
 {
     return mPBestPos;
 }
@@ -78,8 +78,8 @@ void Particle::updateFitness(const prob_t newFitness)
 void Particle::updatePosition(const Particle& GBest, const std::vector<Dim>& dim, const double C1, const double C2,
                     const RandomNumberGenerator& rng, const double inertiaWeight)
 {
-    std::vector<dim_t> newVel;
-    std::vector<dim_t> newPos;
+    dvector newVel;
+    dvector newPos;
     
     assert(mPos.size() == mVel.size());
     assert(mPos.size() == dim.size());

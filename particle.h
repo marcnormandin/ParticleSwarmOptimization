@@ -19,19 +19,21 @@
 class Particle
 {
 public:
+    typedef std::vector<dim_t> dvector;
+    
     Particle();
     
     Particle(const std::vector<Dim>& dim);
     
-    Particle(const std::vector<dim_t>& pos, const prob_t fitness = -1.0 * std::numeric_limits<dim_t>::max());
+    Particle(const dvector& pos, const prob_t fitness = -1.0 * std::numeric_limits<dim_t>::max());
     
-    const std::vector<dim_t>& getPosition() const;
+    const dvector& getPosition() const;
     
-    std::vector<dim_t> getVelocity() const;
+    dvector getVelocity() const;
     
     double getFitness() const;
     
-    std::vector<dim_t> getPBestPosition() const;
+    dvector getPBestPosition() const;
     
     double getPBestFitness() const;
     
@@ -47,13 +49,13 @@ public:
     friend bool operator<(const Particle& p1, const Particle& p2);
     
 private:
-    std::vector<dim_t>      mPos;
-    std::vector<dim_t>      mVel;
-    prob_t					mFitness;
+    dvector     mPos;
+    dvector     mVel;
+    prob_t      mFitness;
     
     // The particles best position
-    std::vector<dim_t>		mPBestPos;
-    prob_t 					mPBestFitness;
+    dvector		mPBestPos;
+    prob_t 		mPBestFitness;
 };
 
 bool operator<(const Particle& p1, const Particle& p2);
