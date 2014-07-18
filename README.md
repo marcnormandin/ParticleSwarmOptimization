@@ -24,12 +24,21 @@ Then run it:
 ```
 test 16 100 testdata
 ```
-The above will generate data using 16 particles for 100 iterations and save into a file named 'testdata'.
+The above will generate data using 16 particles for 100 iterations and save into a file named 'testdata'. Displayed to standard out will be something looking like the following:
+```
+Evaluating: Two-dimensional Ackley.
+True: (x,y) = (4,6.8)
+PSO best: (x,y) = (4.00002,6.79984)
+```
+_The test code actually uses a shifted Ackley function, where the true best value is at (4,6.8)._ The results show that the PSO algorithm did find the best value. 
 
-Then plot the results (requires Python):
+You can plot the intermediate results that were saved to the file 'testdata_ackley.part' (requires Python):
 ```
 ./test_pso_plotdata.py testdata_ackley.part
 ```
 The result will be an animation. The first image should look like the following:
-![Image of frame 0](http://i.imgur.com/tEu4zRs.png)
+![Image of first frame](http://i.imgur.com/tEu4zRs.png)
+
+The last image will show the particles clustering (some overlapping) around the best value found:
+![Image of last frame](http://i.imgur.com/RIfBucY.png)
 
