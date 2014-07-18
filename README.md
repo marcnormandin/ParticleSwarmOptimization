@@ -28,6 +28,8 @@ The above will generate data using 16 particles for 100 iterations and save into
 
 Then plot the results (requires Python):
 ```
-./test_pso_plotdata.py testdata
+./test_pso_plotdata.py testdata_ackley.part
 ```
+The result will be an animation. The first image should look like the following:
+![Image of frame 0](http://i.imgur.com/tEu4zRs.png)
 
