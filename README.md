@@ -19,7 +19,7 @@ g++ -o test particle.cpp pso.cpp test_pso_gendata.cpp -lgsl -lgslcblas -lm
 ```
 Then run it:
 ```
-    test 16 100 testdata
+test 16 100 testdata
 ```
 The above will generate data using 16 particles for 100 iterations and save into a file named 'testdata'.
 
