@@ -14,9 +14,17 @@ This library requires GNU GSL.
 
 ### Test Program
 To compile the test program:
-    g++ -o test particle.cpp pso.cpp test_pso_gendata.cpp -lgsl -lgslcblas -lm
+```
+g++ -o test particle.cpp pso.cpp test_pso_gendata.cpp -lgsl -lgslcblas -lm
+```
 Then run it:
+```
     test 16 100 testdata
-Then plot the results:
-    ./test_pso_plotdata.py testdata
+```
+The above will generate data using 16 particles for 100 iterations and save into a file named 'testdata'.
+
+Then plot the results (requires Python):
+```
+./test_pso_plotdata.py testdata
+```
 
