@@ -12,3 +12,11 @@ Also included is test code that applies the PSO library to the Ackley and 2D Gau
 This library requires GNU GSL.
 
 
+### Test Program
+To compile the test program:
+    g++ -o test particle.cpp pso.cpp test_pso_gendata.cpp -lgsl -lgslcblas -lm
+Then run it:
+    test 16 100 testdata
+Then plot the results:
+    ./test_pso_plotdata.py testdata
+

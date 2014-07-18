@@ -10,6 +10,7 @@
 
 #include <cassert>
 
+typedef double prob_t;
 typedef double dim_t;
 
 class Dim
