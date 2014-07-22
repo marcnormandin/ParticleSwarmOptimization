@@ -1,6 +1,6 @@
 ## Small Particle Swarm Optimization library in C++
 
-This is a small library that implements the basic Particle Swarm Optimation algorithm in C++. It was created and used in another project of mine, and I thought that it might be of help to others in their own projects or to learn about PSO.
+This is a small library that implements the basic Particle Swarm Optimation algorithm in C++. It was created and used in another project of mine, and I thought that it might be of help to others in their own projects or to learn about PSO. This software is licensed under the Apache license, Version 2.0 (http://www.apache.org/licenses/LICENSE-2.0.html).
 
 The main classes are the following:
 - (class PSO) _The main PSO algorithm_
