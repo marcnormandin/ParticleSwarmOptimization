@@ -56,7 +56,7 @@ public:
         return mNumParticles;
     }
 
-    const Particle& compute(FitnessFunction& fitnessFunction, const unsigned int maxIterations, std::ostream* out)
+    const Particle& iterate(FitnessFunction& fitnessFunction, const unsigned int maxIterations, std::ostream* out)
     {
         assert(maxIterations > 0);
 
