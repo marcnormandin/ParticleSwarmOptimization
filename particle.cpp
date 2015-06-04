@@ -68,12 +68,12 @@ double Particle::getFitness() const
     return mFitness;
 }
 
-Particle::dvector Particle::getPBestPosition() const
+Particle::dvector Particle::getBestFitness() const
 {
     return mPBestPos;
 }
 
-double Particle::getPBestFitness() const
+double Particle::getBestFitness() const
 {
     return mPBestFitness;
 }

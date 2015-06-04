@@ -39,6 +39,7 @@
 #include "dim.h"
 #include "particle.h"
 
+template<class FitnessFunction>
 class PSO
 {
 public:
@@ -55,7 +56,6 @@ public:
         return mNumParticles;
     }
 
-    template<class FitnessFunction>
     const Particle& compute(FitnessFunction& fitnessFunction, const unsigned int maxIterations, std::ostream* out)
     {
         assert(maxIterations > 0);
@@ -88,25 +88,7 @@ public:
 
             // Choose the particle with the best fitness value of all the particles as the gBest
             std::vector<Particle>::const_iterator best = std::max_element(mParticles.begin(), mParticles.end());
-            mGBest = Particle( best->getPBestPosition(), best->getPBestFitness() );
-
-            // hack
-            /*
-            std::cout << "PSO iteration " << numIterations << ": best found = (";
-            for (unsigned int k = 0; k < mDim.size(); k++)
-            {
-                std::cout << mGBest.getPosition()[k];
-                if (k != mDim.size()-1)
-                {
-                    std::cout << ",";
-                }
-                else
-                {
-                    std::cout << ")";
-                }
-            }
-            std::cout << std::endl;
-             */
+            mGBest = Particle( best->getBestPosition(), best->getBestFitness() );
 
             // Update the inertia weight
             const double inertiaWeight = computeInertiaWeight(numIterations, maxIterations);
@@ -114,7 +96,7 @@ public:
             // For each particle
             for (unsigned int i = 0; i < mParticles.size(); i++)
             {
-                mParticles[i].updatePosition( mGBest, mDim, mC1, mC2, mRng, inertiaWeight );
+                mParticles[i].updatePosition( mGBest, mDim, mCognitiveWeight, mSocialWeight, mRng, inertiaWeight );
 
                 if (out != NULL)
                 {
@@ -173,8 +155,8 @@ private:
     std::vector<Dim>		mDim;
 
     // These values control how random the particle velocities are
-    static const double 	mC1;
-    static const double 	mC2;
+    static const double 	mCognitiveWeight;
+    static const double 	mSocialWeight;
     
     // These values control the rate of convergence
     static const double     mOmega1;
