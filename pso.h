@@ -45,8 +45,9 @@ class PSO
 public:
     // This routine is used by the PSO unit test
     PSO(const unsigned int numParticles, const std::vector<Dim>& dim,
-        const gslseed_t seed)
-        : mNumParticles(numParticles), mGBest(dim), mDim(dim), mRng(seed)
+        const gslseed_t seed, FitnessFunction& fitnessFunction, const unsigned int maxIterations)
+        : mNumParticles(numParticles), mGBest(dim), mDim(dim), mRng(seed), mFitnessFunction(fitnessFunction),
+        mMaxIterations(maxIterations)
     {
         mParticles.reserve(mNumParticles);
     }
@@ -56,24 +57,16 @@ public:
         return mNumParticles;
     }
 
-    const Particle& iterate(FitnessFunction& fitnessFunction, const unsigned int maxIterations, std::ostream* out)
+    const Particle& iterate()
     {
-        assert(maxIterations > 0);
-
         createRandomParticles();
-        
-        // Write the dimension of the particles
-        if (out != NULL)
-        {
-            *out << mDim.size() << std::endl;
-        }
 
         unsigned int numIterations = 0;
         std::vector<double> particleFitnesses(mParticles.size());
         do
         {
             // Evaluate the fitness/objective function
-        	fitnessFunction(mParticles, &particleFitnesses);
+        	mFitnessFunction(mParticles, &particleFitnesses);
 
             //For each particle
             for (unsigned int i = 0; i < mParticles.size(); i++)
@@ -91,26 +84,17 @@ public:
             mGBest = Particle( best->getBestPosition(), best->getBestFitness() );
 
             // Update the inertia weight
-            const double inertiaWeight = computeInertiaWeight(numIterations, maxIterations);
+            const double inertiaWeight = computeInertiaWeight(numIterations, mMaxIterations);
             
             // For each particle
             for (unsigned int i = 0; i < mParticles.size(); i++)
             {
                 mParticles[i].updatePosition( mGBest, mDim, mCognitiveWeight, mSocialWeight, mRng, inertiaWeight );
-
-                if (out != NULL)
-                {
-                    mParticles[i].recordPosition(*out);
-                }
-            }
-            if (out != NULL)
-            {
-                *out << std::endl;
             }
 
             numIterations++;
         }
-        while(numIterations < maxIterations);
+        while(numIterations < mMaxIterations);
 
         return mGBest;
     }
@@ -163,6 +147,9 @@ private:
     static const double     mOmega2;
 
     RandomNumberGenerator 	mRng;
+
+    FitnessFunction&        mFitnessFunction;
+    unsigned int            mMaxIterations;
 };
 
 

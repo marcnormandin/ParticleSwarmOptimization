@@ -56,9 +56,7 @@ public:
     
     void updatePosition(const Particle& GBest, const std::vector<Dim>& dim, const double C1, const double C2,
                         const RandomNumberGenerator& rng, const double inertiaWeight);
-    
-    void recordPosition(std::ostream& out) const;
-    
+        
     size_t size() const;
     
     friend bool operator<(const Particle& p1, const Particle& p2);

@@ -22,7 +22,6 @@
 #include <cstdlib>
 #include <gsl/gsl_rng.h>
 #include <limits>
-#include <fstream>
 #include <cassert>
 
 #include "rng.h"
@@ -158,14 +157,6 @@ void Particle::updatePosition(const Particle& GBest, const std::vector<Dim>& dim
     
     mPos = newPos;
     mVel = newVel;
-}
-
-void Particle::recordPosition(std::ostream& out) const
-{
-    for (unsigned int i = 0; i < mPos.size(); i++)
-    {
-        out << mPos[i] << "\t";
-    }
 }
 
 size_t Particle::size() const
